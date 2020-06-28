@@ -15,6 +15,7 @@ UsuariosDAO.prototype.autenticar = function(usuario, req, res){
     this._connection.open(function(err, mongoclient){
         mongoclient.collection("usuarios", function(err, collection){
             collection.find(usuario).toArray(function(err, result){
+                //usuário e senha inválidos deverão ser verificados aqui
                 if(result[0] != undefined){
                     req.session.autorizado = true;
 

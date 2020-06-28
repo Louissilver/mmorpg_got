@@ -5,8 +5,8 @@ module.exports.index = function(application, req, res){
 module.exports.autenticar = function(application, req, res){
     var dadosForm = req.body;
 
-    req.assert('usuario', 'Usuário não deve ser vazio').notEmpty();
     req.assert('senha', 'Senha não deve ser vazia').notEmpty();
+    req.assert('senha', 'Senha inválida').notEmpty();
 
     var erros = req.validationErrors();
 
@@ -19,5 +19,4 @@ module.exports.autenticar = function(application, req, res){
     var UsuariosDAO = new application.app.models.UsuariosDAO(connection);
 
     UsuariosDAO.autenticar(dadosForm, req, res);
-
 }
